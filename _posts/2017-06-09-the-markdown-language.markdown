@@ -99,9 +99,12 @@ jekyll支持markdown与textile两种格式。在我的博客中，大部分文�
 代码：
 ```
 [百度](https://www.baidu.com)
+![猫咪](/assets/pic/2017-06-09/cat.jpg)
 ```
 效果：
 > [百度](https://www.baidu.com)
+
+> ![猫咪](/assets/pic/2017-06-09/cat.jpg)
 
 ## 粗体字
 粗体字是前后使用两个*包含文本:
