@@ -3,6 +3,7 @@ layout: post
 title:  "markdown语法"
 date:   2017-06-09 10:48:11 +0800
 categories: jekyll 
+tags: jekyll code
 ---
 如果要使用jekyll来搭建博客，那如何码字就是最关键的一点了，
 jekyll支持markdown与textile两种格式。在我的博客中，大部分文档采用了Markdown来编写
