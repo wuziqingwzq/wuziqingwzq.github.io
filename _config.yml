@@ -19,6 +19,17 @@ description: > # this means to ignore newlines until "baseurl:"
   记录成长的一点一滴
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://localhost:4000" # the base hostname & protocol for your site, e.g. http://example.com
+rss_url: /pages/feed.xml
+
+# Sidebar filter
+# Choose 'tag' or 'category' as filter in sidebar.
+filter: 'category'
+recent_num: 20
+
+avatar: http://wuziqingwzq.github.io/assets/pic/icon/180.png
+favicon: http://wuziqingwzq.github.io/assets/pic/icon/16.ico
+
+
 twitter_username: jekyllrb
 github_username: wuziqingwzq
 
