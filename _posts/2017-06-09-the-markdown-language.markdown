@@ -93,6 +93,8 @@ jekyll支持markdown与textile两种格式。在我的博客中，大部分文�
 ## 图片与链接
 如果要增加一个链接或者增加图片，则需要使用不同的语法：
 
+注意：如果链接是网络地址，需要加http://或者https://
+
 ```
 ![]()  // ![图片名称](图片链接)
  []()  //  [链接名称](链接地址)
@@ -166,6 +168,6 @@ jekyll支持markdown与textile两种格式。在我的博客中，大部分文�
 # 参考文档
 相关参考的文档有：
 
-[简书的教程](www.jianshu.com/p/1e402922ee32)
+[简书的教程](http://www.jianshu.com/p/1e402922ee32)
 
 [markdown语法说明（简体中文版）](http://www.appinn.com/markdown/)
