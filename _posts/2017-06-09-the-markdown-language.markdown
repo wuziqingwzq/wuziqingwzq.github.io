@@ -8,7 +8,6 @@ tags: jekyll code
 如果要使用jekyll来搭建博客，那如何码字就是最关键的一点了，
 jekyll支持markdown与textile两种格式。在我的博客中，大部分文档采用了Markdown来编写
 
-
 ***
 # 文档不包括的部分
 - 表格
