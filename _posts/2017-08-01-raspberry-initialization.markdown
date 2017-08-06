@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "树莓派学习（一）：系统安装"
-date:   2017-07-27 18:45:00 +0800
+date:   2017-08-01 18:45:00 +0800
 categories: RaspberryPi
-tags: raspberry
+tags: raspberry raspbian
 ---
 ## 准备材料
 树莓派安装系统，现在手上有以下物件：
