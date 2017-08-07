@@ -11,3 +11,4 @@ tags: jekyll blog github
 这篇博客是按照github上[闫肃的博客](http://yansu.org/2014/02/12/how-to-deploy-a-blog-on-github-by-jekyll.html)教程来配置的，记录一下修改时的问题。
 
 # 过程
+jekylly中_post文件夹中发布的文章，有一个特性需要注意，就是发布的时间如果超过当前时间（即一个未来的时间，则该文章不会显示）。
