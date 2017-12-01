@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "ShadowSocks影梭部署教程"
-date:   2017-11-13 00:00:00 +0800
+date:   2017-11-30 21:00:00 +0800
 categories: SS/SSR
 tags: ShadowSocks SS Linux CentOS
 ---
