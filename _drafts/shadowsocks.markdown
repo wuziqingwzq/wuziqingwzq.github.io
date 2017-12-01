@@ -6,13 +6,13 @@ categories: SS/SSR
 tags: ShadowSocks SS Linux CentOS
 ---
 
-# 影梭ShadowSocks是什么
+## 影梭ShadowSocks是什么
 影梭ShadowSocks（下文简称SS）是一款基于Socks5代理方式的网络数据加密传输软件。主要用处是通过特定的中转服务器完成数据传输，可以用于科学上网。
 
-# SS与VPN的区别是什么
+## SS与VPN的区别是什么
 简单来说，VPN是一种虚拟网络，搭建之后所有的流量都会从该虚拟网络走，服务端到客户端搭建起来一条长连接的隧道。而SS是基于socks5协议的，只是单纯的转发数据包，这样的好处是访问国内网站时速度较快，而访问受拦截的网站时则可以通过中转服务器发起请求。
 
-# 优点与缺点
+## 优点与缺点
 由于我也是刚接触这款工具，因此理解可能不够深刻。但是通过查询相关资料来看，SS的优缺点如下：
 
 * 优点：
@@ -27,12 +27,42 @@ tags: ShadowSocks SS Linux CentOS
 
 ***
 
-# 服务器的购买
-SS分为客户端和服务端，如果用于科学上网，则服务端需要拥有一个能被访问的国外IP。如果你还没有一台境外的服务器的话，可以参照我的另一篇文章[(暂时没发布)][payforserver]。
+## 服务器的购买
+SS分为客户端和服务端，如果用于科学上网，则服务端需要拥有一个能被访问的国外IP。如果你还没有境外的服务器的话，需要先租用一台，从网上搜到的情况每月价格在2.5刀至5刀不等，折合人民币17-33元左右。
+
+以下有几个推荐的服务提供商：
+1. [Vultr](https://www.vultr.com/?ref=7262500)，每月最低2.5$，但是需要选地区，有些地区最低5$。
+2. [搬瓦工](https://bwh1.net/)，最低19.99一年（平均每月1.67$）
+3. [DigitalOcean](https://www.digitalocean.com)
+其实网上还有很多其他的，可以自己搜索一下，但是机房一定要在国外。
+
+我使用的Vultr的服务器，现在看起来还比较稳定。进入网站之后，需要注册一个账户，登陆之后界面如下。
+![vultr][vultr]
+左边的菜单分别是
+* Servers服务器：用于管理当前的云服务器或者新增示例。
+* Billing账单：充值页面，可以使用支付宝，好评。可以查看充值记录以及余额等
+* Support技术支持：常见问题、文档以及开发票等。
+* Affiliate推广：你可以分享链接让别人注册，可以获得优惠卷。比如上面我推荐的链接中就带有我的邀请码。
+* Account账户：本账户的资料修改等。
+
+### 选择配置
+
+点击Servers，可以新增一台服务器
+![servers][servers]
+1. 选择服务器所在地，有东京、新加坡、伦敦、法兰克福、巴黎、芝加哥等，部分地区的机房是没有2.5$/month的服务器的，需要注意一下
+2. 选择服务器类型，我选择的是CentOS7，也可以选Debian、windows等
+3. 选择服务器的配置，我选择的是最便宜的2.5$一个月的，性价比最高，因为SS是轻量级的应用，对于配置要求很低。500G每个月的流量也足够使用了。
+4. 最下面选择Deploy Now就可以生成服务器示例了。如果你没有充值的话，这个地方会提醒充值。
+
+### 连接服务器
+还是选择Servers，里面会出现一个列表，并且还有一个互联网IP，比起国内的云服务器提供商把IP和服务拆开卖良心太多了。
+
+服务器初始化之后，可以使用SSH客户端远程连接，我使用的是Putty。
 
 
-# 服务端配置
-## 安装配置
+## 服务端配置
+
+### 安装配置
 在CentOS-7下，推荐使用PIP快速安装服务，免去了配置与编译的工作。PIP是python版本的包管理工具，因此环境依赖中需要先安装python。
 
 使用以下指令安装PIP（第一句是安装自动补全代码的插件，非必要）
@@ -74,7 +104,7 @@ nano /etc/shadowsocks.json
 ```
 其中需要修改的内容有server_port服务器端口与password密码。按ctrl+X保存退出。
 
-## 启动服务
+### 启动服务
 
 现在测试一下启动,如果提示started则启动完成。
 ```
@@ -91,8 +121,8 @@ nano /etc/shadowsocks.json
 服务启动好之后，我们就可以直接在手机或者电脑上下载相应的客户端软件进行连接了。建议在Github上直接下载
 
 
-# 客户端配置
-## Windows
+## 客户端配置
+### Windows
 在百度搜索Shadowsocks好像已经找不到下载链接了，但是仔细找找应该还是有的。建议在[***github***][github-windows]上直接下载。进入该页面后，有一个下载地址。
 ![githubpage][githubpage]
 
@@ -103,7 +133,7 @@ nano /etc/shadowsocks.json
 
 启动之后，可以在浏览器中尝试一下，应该就可以访问你想访问的网站了
 
-## IOS
+### IOS
 在APPSTORE中搜索SSR,其中的SsrConnect、shadowrocket等软件都可以用于连接SS服务器。配置和Windows类似。
 
 # 防火墙配置
@@ -143,7 +173,7 @@ systemctl list-unit-files|grep firewalld.service
 
 ***
 
-# 参考文档
+## 参考文档
 [图文教程：手把手教你使用 VPS 服务器搭建 Shadowsocks](https://www.rkdot.com/shadowsocks-server-setup/)
 
 
@@ -151,6 +181,6 @@ systemctl list-unit-files|grep firewalld.service
 [github-windows]: https://github.com/shadowsocks/shadowsocks-windows/releases
 [githubpage]: /assets/pic/2017-11-30/githubpage.png
 [ss]: /assets/pic/2017-11-30/ss.png
-[payforserver]: /
-
+[vultr]: /assets/pic/2017-11-30/vultr.png
+[servers]: /assets/pic/2017-11-30/servers.png
 
