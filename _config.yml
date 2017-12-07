@@ -14,11 +14,11 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Wzq的博客
-email: wuziqing@gmail.com
+email: wuziqing1992@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   记录成长的一点一滴
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://localhost:4000" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://wuziqingwzq.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 rss_url: /pages/feed.xml
 
 # Sidebar filter
@@ -30,8 +30,10 @@ avatar: /assets/pic/icon/180.png
 favicon: /assets/pic/icon/16.ico
 
 # social account
-twitter_username: jekyllrb
-github_username: wuziqingwzq
+#twitter_username: jekyll
+#github_username: wuziqingwzq
+github: wuziqingwzq
+weibo: 2512330211
 
 # Build settings
 markdown: kramdown
