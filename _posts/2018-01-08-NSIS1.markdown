@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "安装程序打包工具NSIS"
-date:   2017-12-01 00:00:00 +0800
+title:  "安装程序打包工具NSIS（一）"
+date:   2018-01-08 18:20:00 +0800
 categories: other
 tags: NSIS install
 ---
@@ -22,17 +22,17 @@ NSIS (Nullsoft Scriptable Install System) 是 Windows 下的一个安装程序�
 ## 环境需求
 在进行程序打包工作之前，需要先安装NSIS的运行环境。
 
-1.[***脚本编译器***][脚本编译器]：脚本文件编译器，可以根据你写的脚本生成可执行文件。
+1.脚本编译器：脚本文件编译器，可以根据你写的脚本生成可执行文件。
 
-进入下载页面之后点击Download，跳转页面后会自动下载。
+进入[**下载页面**][脚本编译器]之后点击Download，跳转页面后会自动下载。
 
 ![downloadNSIS][downloadNSIS]
 
 2.***NSIS中文用户手册***，如果你以前没有接触过的话，建议搜索一下文档查看一下接口以及官方提供的示例，这样学习起来比较快
 
-3.[***NSISEDIT***][脚本编辑器]：脚本编辑器，总不可能用记事本编辑脚本，偶尔出现错误也不好调试。
+3.脚本编辑器NSISEDIT：脚本编辑器，总不可能用记事本编辑脚本，偶尔出现错误也不好调试。
 
-进入下载页面之后往下拉，找到Download，点击Nisedit2.0.3.exe，跳转后等待下载。
+进入[**下载页面**][脚本编辑器]之后往下拉，找到Download，点击Nisedit2.0.3.exe，跳转后等待下载。
 
 ![downloadNSISEdit][downloadNSISEdit]
 
@@ -57,30 +57,27 @@ NSIS脚本编辑器安装好之后，就可以参考文档开始学习了。
 ![install4][install4]
 6.应用程序文件：这儿需要说明一下，对于NSIS来说，定义有Section为组件，每个组件中可能包含了不同的文件或者是操作，然后不同的安装模式可以选择不同组件进行安装。在左边的选择框中选择的是组件，右边的选择框是添加文件或者文件目录。可以在安装的程序中添加一个EXE文件，如果该目录中的文件不存在也会提示编译错误。
 ![install5][install5]
+
 7.应用程序图标：可以指定安装好的程序目录名称，也可以添加快捷方式等。
-8.安装程序之后运行：在程序安装好后，有时候需要再运行一些依赖项，你可以写好一个批处理文件然后运行。
-9.解除安装程序：
+![install6][install6]
 
+8.安装程序之后运行：在程序安装好后，有时候需要再运行一些依赖项，你可以写好一个批处理文件然后运行，比如说常见的注册表以及bat都可以在这里设置。
 
+9.解除安装程序：在安装程序设置好之后，还需要考虑一下驱动卸载的过程，程序预设了一个卸载程序，可以不用修改。
+![install8][install8]
 
+10.设置完成：最后可以选择保存脚本并编译。
+![install7][install7]
 
+### 安装测试
 
+在获取到生成的脚本文件（.nsi）之后，在NSISEDIT中可以编译测试一下，选择该脚本，右键选择编译并运行，如下图：
 
+![savensi][savensi]
+如果报错了的话，需要看一下具体的错误，已经的会编译不通过的原因有：脚本中引用的文件不存在，没有权限进行访问引用的文件。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+运行的结果类似于这个样子：
+![installing][installing]
 
 
 
@@ -95,3 +92,9 @@ NSIS脚本编辑器安装好之后，就可以参考文档开始学习了。
 [install2]: /assets/pic/2017-12-01/install2.png
 [install3]: /assets/pic/2017-12-01/install3.png
 [install4]: /assets/pic/2017-12-01/install4.png
+[install5]: /assets/pic/2017-12-01/install5.png
+[install6]: /assets/pic/2017-12-01/install6.png
+[install7]: /assets/pic/2017-12-01/install7.png
+[install8]: /assets/pic/2017-12-01/install8.png
+[installing]: /assets/pic/2017-12-01/installing.png
+[savensi]: /assets/pic/2017-12-01/savensi.png
