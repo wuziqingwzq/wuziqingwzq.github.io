@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "X509学习记录（一）：ASN.1概述"
+title:  "X.509学习记录（一）：ASN.1概述"
 date:   2017-12-27 00:00:00 +0800
 categories: CA
-tags: X509 CA Certificate ASN.1
+tags: X.509 CA Certificate ASN.1
 ---
 在有关X509证书各类RFC文档中，都采用了ASN1的语法来描述证书结构，因此需要先了解一下ASN.1的语法规范，便于接下来的学习
 
