@@ -99,7 +99,7 @@ AlgorithmIdentifier  ::=  SEQUENCE  {
         algorithm        OBJECT IDENTIFIER,
         parameters       ANY DEFINED BY algorithm OPTIONAL  }
 ```
-
+![SigOID][SigOID]
 在asn1dump中解析出的签名算法OID是一个11字节的数据:
 ```
 06 09 2a 86 48 86 f7 0d 01 01 05
