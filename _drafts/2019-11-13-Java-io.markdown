@@ -1,0 +1,202 @@
+---
+layout: post
+title:  "JAVA学习（一）——IO流"
+date:   2019-11-14 09:00:00 +0800
+categories: JAVA
+tags: JAVA IO
+---
+
+2019年其他事情比较多，很多学习的记录都以纸质笔记的方式记录，博客也没有进行更新。今年将学习的东西继续总结记录，主要包括以下几个方面：Docker、数据库的分布式部署、Java基础、SpringMVC、Vue。继续将网页demo的功能完善。
+
+## JAVA IO
+之前每次遇到文件处理都会头疼，各种类型的输入流输出流分不清楚。这次好好梳理一下，各种流的定义及用法。
+
+
+## 流的分类
+
+![IO流][IO流]
+
+流的用处是什么？可以把程序想象成一个水池，两根水管接入这个水池。
+
+* 根据水流的方向，进水口被称为输入流，排水口被称为输出流。
+* 根据管道里面介质的不同，里面流动的是字符，被称为字符流，里面流动的是字节，被称为字节流。
+
+## 字符流与字节流
+
+字节流与字符流的区别在哪儿？由于JAVA的底层数据都是byte类型，每一字节是8位二进制，字节流是最基础的流，每次读取一个字节。但是这种流在传输字符的时候不方便，经过编码后，一个字符长度会超过一字节，比如说“李白”：
+
+* GBK编码为“李C0EE 白B0D7”，每个字符长度为2字节。
+* UTF8编码为“李E69D8E 白E799BD”，每个字符长度为3字节。
+
+如果通过字节流来传输，每次都需要转码，会很麻烦，因此产生了字符流，减少了转码的步骤，使用起来更方便。顺便说一下可以看出UTF8比GBK更占空间。
+
+## 输入流与输出流
+一般来讲，输入流用于读取文件（包括InputStream），输出流用于写文件（OutputStream）。这两个流都是抽象类，有多个实现类。
+
+以下的代码：
+
+{% highlight java %}
+InputStream in = getClass().getResourceAsStream("/config/demo.properties");
+System.out.println(in.available());
+System.out.println("ok");
+for (int i = 0; i < in.available(); i++) {
+    System.out.println(in.read());
+}
+{% endhighlight %}
+
+使用getClass.getResourceAsStream获取到一个文件字节输入流，然后用available方法获取长度估算。发现一个有意思的地方，就是in.available()得到的大小是107字节，是文件的大小，但是for循环打印出来的字节只有53个字节，这个比较奇怪。
+
+## 子类——输入字节流
+
+以下几个都是InputStream的子类：
+1. FileInputStream
+2. ByteArrayInputStream
+3. ObjectInputStream
+4. PipeInputStream
+5. System.in
+6. ...
+
+FileInputStream用来从文件中读取数据：
+
+{% highlight java %}
+File file = new File("D:\\demo.properties");
+FileInputStream fis = new FileInputStream(file);
+for (int i = 0; i < in.available(); i++) {
+    System.out.println(Integer.toBinaryString(fis.read()));
+}
+{% endhighlight %}
+
+我们来试一试，发现available()方法获取的还是107字节，for循环打印出来106字节。
+
+ByteArrayInputStream用来从字节数组中读取数据：
+
+{% highlight java %}
+String str = "你好世界";
+byte[] a = str.getBytes("UTF-8");
+ByteArrayInputStream bais = new ByteArrayInputStream(a);
+System.out.println("长度" + bais.available());
+{% endhighlight %}
+
+得到的长度是12，与之前计算是一样的，4个字符UTF8编码后共12字节。在网上查询之后，发现一个流的特性，即流无法重复读取，来测试一下。
+
+{% highlight java %}
+while(bais.available()>0){
+    bais.read();
+    System.out.println(bais.available());
+}
+System.out.println(new String(b,"UTF8"));
+{% endhighlight %}
+
+得到的结果是12、11、10...0，说明数据流中可用的字节流在变少，并且在后面无法继续read,这个应该是IO流的一个通用特性，最后使用new String恢复了这个字符串。
+
+## 子类——输入字符流
+
+输入字符流的抽象类是Reader，该类的子类必须要实现的方法是read()
+和close()，在read()方法中，一般是向一个char数组写入读出的数据，在JAVA中，一般是不推荐使用char这个类型的。下面来看看Reader的子类有哪些：
+
+1. StringReader
+2. FileReader
+3. InputStreamReader
+4. ByteArrayReader
+5. BufferedReader
+6. .....
+
+{% highlight java %}
+String str2 = "李大嘴是厨师";
+    StringReader sr = new StringReader(str2);
+    char[] b = new char[1024];
+int i = 0;
+int ch;
+while ((ch = sr.read()) != -1) {
+    b[i] = (char) ch;
+    i++;
+}
+System.out.println(String.valueOf(b));
+{% endhighlight %}
+
+使用String初始化了一个StringReader,然后把它打印出来，这里我发现字符流居然没有available()方法，判断是否可读需要看read()什么时候返回-1。测试了FileReader之后，发现功能也类似。
+
+## 处理流
+
+在查看网上的资料的时候，发现还有另外一种分类，根据IO流的功能，被分为节点流与处理流。节点流直接连接程序与数据源，而处理流必须和节点流一起，向节点流添加额外的功能。例如InputStream、OutPutStream、Reader、Writer都是节点流。
+
+![处理流][处理流]
+
+我觉得这个图很科学，处理流的工作需要依赖于节点流，就像管道外面套的保护层一样，可以根据不同的用途来进行替换。而处理流也分为三种，一种是缓冲流，一般带Duffered前缀。第二种是转换流，将数据流与字符流进行转换。第三种叫做数据流，一般带Data前缀。
+
+来看一下字符缓冲流BufferedReader。它的功能是从字符输入流读取文本，缓冲字符，以提供字符，数组和行的高效读取。 BufferedReader的构造方法中，需要传入Reader，使用代码如下：
+
+{% highlight java %}
+FileReader sr = new FileReader(filepath);
+BufferedReader bfr = new BufferedReader(sr);
+while (bfr.ready()){
+    System.out.println(bfr.readLine());
+}
+{% endhighlight %}
+
+比起原有的节点流，多出了readLine()方法用于读取行、ready()方法用于判断是否可读，确实操作比字符流更方便。而缓冲字节流BufferedInputStream从方法上看不出有什么区别，从说明上是增加了缓冲输入和支持mark和reset方法，应该同样是提高了原版的操作性，这个以后有时间再看一下。
+
+
+## 子类——输出字节流
+
+输入流的写入会依赖于底层平台，如果底层系统要求文件只能被打开一次，那么多个输入可能会抛出错误。看了前面几个，输出流与输入流只是方向不同而已，用法基本一致，其子类包括：
+
+1. FilterOutputStream 
+2. FileOutputStream
+3. ByteArrayOutputStream
+4. ……
+
+一般流用在文件的写入读取上比较多，这边来试试FileOutputStream。
+
+{% highlight java %}
+String filepath = "d:\\demo2";
+String str2 = "李大嘴是厨师";
+byte[] b = str2.getBytes();
+FileOutputStream fos = new FileOutputStream(filepath);
+fos.write(b);
+{% endhighlight %}
+
+检查目标路径的文件，已经有了，并且写入了编码后的数据。这里需要注意的是，每次write的时候，都是覆盖写入。如果需要接着之前的数据写，需要手动设置偏移量。
+
+## 子类——输出字符流
+
+输出字符流的抽象类是Writer，其子类包括：
+
+1. StringWriter 
+2. PrintWriter
+3. CharArrayWriter
+4. ……
+
+通过对FileWriter的测试，发现一个有意思的地方
+
+{% highlight java %}
+String filepath = "d:\\demo1";
+String str2 = "东成西就";
+char[] b = str2.toCharArray();
+FileWriter fos = new FileWriter(filepath, true);
+System.out.println();
+fos.write(b);
+{% endhighlight %}
+
+上面的代码没办法将字符写入文件，一开始我以为是出什么问题了，后来才发现，字符流在写入之后，需要执行flush()方法将数据冲入目标文件，执行close()也会有同样的效果，并且输入流如果没关闭，可能也会引起一些其他问题。但是使用OutputStream却不需要。
+
+
+## 知识点
+
+总结一下，现在得到的信息有：
+
+1. 流不能反复读
+2. 字节流可以用read、available，字符流可以用read来判断是否还能读。
+3. 字节流可以用available判断所需的缓冲数组的长度，字符流不行。
+4. IO流是线程不安全的。
+5. IO流使用完需要关闭。
+6. 输出流写之后要flush一下
+
+后面还有一些转换流的用法需要下来再看一下。
+
+
+
+
+[IO流]: /assets/pic/2019-11-14/stream.jpg
+[处理流]: /assets/pic/2019-11-14/bufferedWriter.jpg
+

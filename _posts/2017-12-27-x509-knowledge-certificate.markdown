@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "X509学习记录（二）：证书格式"
+title:  "X509学习记录：证书格式"
 date:   2017-12-27 00:00:00 +0800
 categories: CA
 tags: X509 CA Certificate RFC
