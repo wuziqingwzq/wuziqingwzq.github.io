@@ -1,0 +1,29 @@
+---
+layout: post
+title:  "JAVA学习（二）——IO流"
+date:   2019-11-21 09:00:00 +0800
+categories: JAVA
+tags: JAVA IO
+---
+
+上次还遗留了一些类没有看，就是转换流，转换流的功能是把字符流和字节流进行转换。包括：
+
+* 输入字节流转字符流：InputStreamReader
+* 输出字节流转字符流：OutputStreamWriter
+
+转换流的构造方法上来看，使用比较简单，直接传入一个字节流就可以，使用的时候，参照字符流的用法。
+
+{% highlight java %}
+InputStreamReader isr = new InputStreamReader(new FileInputStream("D:\\demo1"));
+BufferedReader bfr = new BufferedReader(isr);
+System.out.println(isr.getEncoding());
+while (bfr.ready()){
+    System.out.println(bfr.readLine());
+}
+
+OutputStreamWriter osw = new OutputStreamWriter(System.out);
+osw.write("测试写出");
+osw.flush();
+{% endhighlight %}
+
+
