@@ -1,0 +1,97 @@
+---
+layout: post
+title:  "使用Jekyll部署博客"
+date:   2019-12-06 09:00:00 +0800
+categories: other
+tags: jekyll
+---
+
+# 为什么要写技术博客
+以前有过类似的想法，但是从来没有付诸行动过，上周看了一篇文章，说每个技术员都应该写自己的博客，有所触动。
+
+之前有了解过如何搭建博客，网上有推荐过CNblog和新浪博客等，由于项目中正好在使用Github，于是选择了使用jekyll来搭建自己的技术博客。
+
+# Jekyll是什么？
+官方的解释是：Jekyll 是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过 Markdown （或者 Textile） 以及 Liquid 转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。
+
+在我的理解中，jekyll是一个不用维护负责的网络后台的Web容器，它将一些静态文本直接通过一定的规则生成静态页面，用来发布没有复杂逻辑的博客来说，是再方便不过的工具了。没有数据库，没有后台服务需要操心，只用管理若干个文件。
+
+# 参考文档
+[jekyll官方网站](http://jekyllcn.com/)
+[Liquid模板语言](https://liquid.bootcss.com/)
+
+# 学习记录
+## 启动
+在jekyll根目录下执行``jekyll serve``指令可以启动
+
+
+## 草稿
+在jekyll的根目录之下新建一个文件夹，名称是_draft，将草稿.markdown文件放进去
+
+在直接使用``jekyll serve --watch``启动的时候只会生成_post文件夹下的博文，需要在启动指令的后面增加一个``--draft``才能生成带草稿的页面。
+
+启动服务的指令是``jekyll serve --watch --draft``
+
+注意：在文档中的头信息中，目录一栏如果有中文，会导致该博客打不开
+
+## 主页
+在jekyll的根目录之下如果有index.html，默认其为主页
+
+## 其他
+### 代码高亮
+在官方文件中有提到，可以将代码高亮显示只需要在代码段的前后加上这样的代码：
+![高亮代码][高亮代码图片]
+
+效果如下：
+
+{% highlight java %}
+Object obj = new Object();
+{% endhighlight %}
+
+## 安装环境
+
+### CentOS7
+
+补充时间：2019年12月
+由于换电脑了，需要把Jekyll的环境进行迁移，以前是直接在Windows下安装使用Ruby环境，迁移后使用的CentOS7的虚拟机，发现有几个地方比较坑，需要注意一下：
+
+首先是依赖关系，Jekyll需要使用Gem来安装，而Gem依赖于Ruby2.3以上的环境，CentOS7下面是没有的，并且yum安装的最高版本是2.0，需要手动升级。步骤如下：
+
+* 在CentOS7中安装Ruby及gem环境
+
+```
+yum -y install ruby ruby-devel rubygems rpm-build
+
+```
+
+* 使用yum安装的版本比较低，使用``ruby -v``查看，为2.0
+
+* 安装yum源及高版本ruby、启用高版本
+
+```
+yum install centos-release-scl-rh　
+yum install rh-ruby26 rh-ruby26-ruby-devel 
+scl enable rh-ruby24 bash
+```
+
+* 使用``ruby -v``查看，为2.6
+
+* 由于scl enable这个指令是临时切换ruby版本，每次重启后是不会生效的，所以需要把他加到bash中，默认开机就设置ruby版本。
+
+```
+vi ~/.bash_profile
+source /opt/rh/rh-ruby26/enable
+```
+
+* 由于安装gem需要GCC来进行编译，还需要安装编译环境
+
+```
+yum groupinstall "Development tools"
+```
+
+* 安装完后，使用``gem install bundler jekyll``来安装jekyll
+
+* 如果需要测试功能，使用``jekyll new my-awesome-site``来创建一个网站，通过网页访问，默认端口4000
+
+
+[高亮代码图片]: /assets/pic/2017-06-09/highlight.png
