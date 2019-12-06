@@ -2,7 +2,7 @@
 layout: post
 title:  虚拟密码机
 date:   2019-12-06 09:00:00 +0800
-categories: blog
+categories: middleware
 tags: Security VSM
 ---
 

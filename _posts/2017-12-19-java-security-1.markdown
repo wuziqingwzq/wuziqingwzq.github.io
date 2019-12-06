@@ -2,7 +2,7 @@
 layout: post
 title:  "JAVA.Security学习笔记一"
 date:   2017-12-19 17:00:00 +0800
-categories: CA
+categories: JAVA
 tags: CA Certificate JAVA
 ---
 

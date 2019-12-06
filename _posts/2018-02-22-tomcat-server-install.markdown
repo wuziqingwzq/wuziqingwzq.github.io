@@ -2,7 +2,7 @@
 layout: post
 title:  "Tomcat服务安装"
 date:   2018-02-22 18:00:00 +0800
-categories: other
+categories: middleware
 tags: Tomcat service
 ---
 ## 设置Tomcat服务

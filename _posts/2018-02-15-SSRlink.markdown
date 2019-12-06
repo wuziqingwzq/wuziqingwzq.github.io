@@ -2,7 +2,7 @@
 layout: post
 title:  "二维码"
 date:   2018-02-15 18:20:00 +0800
-categories: SSR
+categories: other
 tags: VPN SSR
 ---
 由于服务器IP经常被ban，所以加上这个二维码，自己扫就行了

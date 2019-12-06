@@ -2,7 +2,7 @@
 layout: post
 title:  "修改Oracle管理员密码"
 date:   2017-06-28 00:00:00 +0800
-categories: database 
+categories: middleware 
 tags: oracle password sqlplus
 ---
 

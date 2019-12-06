@@ -2,7 +2,7 @@
 layout: post
 title:  "systemctl指令和service指令"
 date:   2018-09-20 09:20:00 +0800
-categories: CentOS
+categories: middleware
 tags: CentOS Linux
 ---
 ## 前言

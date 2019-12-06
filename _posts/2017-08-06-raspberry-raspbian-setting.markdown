@@ -2,7 +2,7 @@
 layout: post
 title:  "树莓派学习（二）：系统初始化"
 date:   2017-08-06 17:17:00 +0800
-categories: RaspberryPi
+categories: middleware
 tags: raspberry raspbian
 ---
 

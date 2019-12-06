@@ -2,7 +2,7 @@
 layout: post
 title:  "树莓派学习（四）：系统备份"
 date:   2017-08-15 09:00:00 +0800
-categories: RaspberryPi
+categories: middleware
 tags: raspberry raspbian
 ---
 ## 为什么需要备份

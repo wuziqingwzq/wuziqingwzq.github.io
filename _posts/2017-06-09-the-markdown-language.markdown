@@ -2,7 +2,7 @@
 layout: post
 title:  "markdown语法"
 date:   2017-06-09 10:48:11 +0800
-categories: jekyll 
+categories: other 
 tags: jekyll code
 ---
 如果要使用jekyll来搭建博客，那如何码字就是最关键的一点了，

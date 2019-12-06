@@ -2,7 +2,7 @@
 layout: post
 title:  "COM组件和动态库的区别"
 date:   2018-07-31 09:20:00 +0800
-categories: SSR
+categories: middleware
 tags: VPN SSR
 ---
 之前公司里的开发给我说过他们开发的COM组件的事情，我一直没有搞清楚COM组件和动态库的区别，看起来都是DLL后缀的文件，后面去网上查了相关资料，但是一个月不到就忘了。这次为避免忘记，再总结一次并记录下来。

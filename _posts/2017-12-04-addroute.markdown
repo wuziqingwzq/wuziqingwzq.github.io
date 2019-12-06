@@ -2,7 +2,7 @@
 layout: post
 title:  "同时访问内网和外网的设置"
 date:   2017-12-04 12:00:00 +0800
-categories: other
+categories: middleware
 tags: network
 ---
 某些时候，计算机会出现同时访问公司内网与互联网系统的需求

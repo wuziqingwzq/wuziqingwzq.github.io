@@ -2,7 +2,7 @@
 layout: post
 title:  "树莓派学习（一）：系统安装"
 date:   2017-08-01 18:45:00 +0800
-categories: RaspberryPi
+categories: middleware
 tags: raspberry raspbian
 ---
 ## 准备材料

@@ -2,7 +2,7 @@
 layout: post
 title:  "树莓派简介"
 date:   2017-07-27 18:45:00 +0800
-categories: RaspberryPi
+categories: middleware
 tags: raspberry
 ---
 最近在网上发现一个新玩意：树莓派（RaspberryPi 简称RPi）

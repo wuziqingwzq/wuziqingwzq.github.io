@@ -2,7 +2,7 @@
 layout: post
 title:  "树莓派学习（三）：常用设置"
 date:   2017-08-07 11:53:00 +0800
-categories: RaspberryPi
+categories: middleware
 tags: raspberry raspbian
 ---
 使用VNC连接树莓派时，有一些常用设置，本文中列举了以下设置：
