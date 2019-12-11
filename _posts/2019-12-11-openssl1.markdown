@@ -1,0 +1,77 @@
+---
+layout: post
+title:  OpenSSL使用
+date:   2019-12-09 09:00:00 +0800
+categories: CA
+tags: OpenSSL CA Certificate
+---
+
+## 引言
+
+OpenSSL已经提供了一套通用的接口，可以用来实现RSA证书的应用，比如说自签名、生成私钥、生成P10请求、合成P12证书等。
+
+## OpenSSL安装
+
+在CentOS7下安装OpenSSL套件非常容易
+
+```
+yum install openssl openssl-devel
+\\安装完成后查看版本信息
+openssl version
+# OpenSSL 1.0.2k-fips  26 Jan 2017
+```
+
+
+## OpenSSL基本功能
+
+打出``openssl``,可以看到三种类型的指令，分别是：
+
+* Standard commands
+* Message Digest（dgst）
+* Cipher commands（enc）
+
+里面有不少的功能
+
+## 生成私钥
+
+使用genrsa可以生成一个RSA的私钥文件，并使用DES3对称算法来加密该私钥文件，如果不选择-des参数的话，私钥就是明文存储，但是安全性太低。生成的私钥长度是2048位，也可以选择1024，并且输出到.key文件中。
+
+```
+openssl genrsa -des3 -out ca.key 2048
+```
+
+## 自签名证书
+
+有私钥之后，就可以用来签名了，-req是创建一个请求，-key表示证书的私钥，-out直接输出了一个crt文件，也就是证书。
+
+```
+openssl req -new -x509  -days 365 -key ca.key -out ca.crt
+```
+执行完后，可以得到一张自签名的根证书
+
+## 生成P10
+
+证书请求的另一种用法是创建一个证书请求，并让CA来给你签发。
+
+```
+//首先创建一个私钥
+openssl genrsa  -out test.key 2048
+//然后生成一个P10请求
+openssl req -new -key test.key -out testp10.csr
+```
+req -new是生成请求，意思是使用test.key的私钥，发起一个证书请求，需要注意的是，这儿-out生成的是csr而不是crt，表明输出了一个P10。
+
+## 使用根证书签发P10
+
+```
+openssl x509 -req -days 3650 -in testp10.csr -CA ca/ca.crt -CAkey ca/ca.key -set_serial 0700123123 -out test.crt
+```
+得到一个P10之后，CA可以使用私钥来进行签名，x509 -req表明是在针对一个请求签发证书，-days表明了需要签署的时间。 -CA和-CAkey明确了CA证书和CA私钥。-set_serial用于设定证书序列号，一般按照X509的规范，每个CA签发的证书序列号都是不同的，需要注意的是，这儿的序列号会被转成16进制，最后输出一个证书文件。
+
+## 合成P12文件
+
+```
+openssl pkcs12 -export -clcerts -in test.crt -inkey test.key -out test.p12
+```
+P12格式的证书包含了私钥，可以用于互联网的传输等。pkcs12需要输入一个用户证书与用户私钥，生成一个p12文件，我们也可以把文件的后缀改成PFX，可以导入Windows系统，使用CSP接口进行签名。-export -clcerts两个参数不能少，否则会报错，暂时没查到是用来干嘛的，应该是指定证书的格式。
+
