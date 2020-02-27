@@ -182,7 +182,7 @@ firewall-cmd --permanent --add-masquerade
 
 IP伪装开启后，可以使用下面的指令来进行端口映射，下面的指令是将172.16.159.26的80端口映射到本机的8000端口上。
 ```
-firewall-cmd --zone=drop --add-forward-port=port=8000:proto=tcp:toport=80:toaddr=172.16.159.26 --permanent
+firewall-cmd --add-forward-port=port=8000:proto=tcp:toport=80:toaddr=172.16.159.26 --permanent
 \\重新加载防火墙状态
 firewall-cmd --reload
 \\查看端口映射
