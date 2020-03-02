@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "迁移Jekyll博客与更换主题"
+title:  迁移Jekyll博客与更换主题
 date:   2020-02-26 09:00:00 +0800
 categories: other
 tags: jekyll
