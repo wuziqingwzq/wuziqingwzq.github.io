@@ -6,12 +6,12 @@ source "https://rubygems.org"
 #     bundle exec jekyll serve
 #
 # This will help ensure the proper Jekyll version is running.
-# Happy Jekylling!
+# 该配置文件用于控制jekyll的运行环境
 
 
 gem "jekyll", "~> 3.8.5"
 
-# This is the default theme for new Jekyll sites. You may change this to anything you like.
+# 博客使用的主题，默认的是官方的minima
 # gem "minima", "~> 2.5"
 gem "jekyll-theme-clean-blog"
 
