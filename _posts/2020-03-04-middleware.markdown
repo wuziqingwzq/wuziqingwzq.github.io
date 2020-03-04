@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  中间件部署常见问题
-date:   2019-12-06 09:00:00 +0800
+title:  软件部署常见问题
+subtitle: centOS7/Mysql/tomcat等 
+date:   2020-03-04 09:00:00 +0800
 categories: middleware
 tags: middleware tomcat centOS
 ---

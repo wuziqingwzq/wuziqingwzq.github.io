@@ -1,6 +1,7 @@
 ---
 layout: post
-title:  迁移Jekyll博客与更换主题
+title:  关于Jekyll的一些内容
+subtitle: 迁移博客与更换主题
 date:   2020-02-26 09:00:00 +0800
 categories: other
 tags: jekyll
@@ -54,6 +55,9 @@ jekyll new可以在指定路径创建一个空的博客项目的框架，包含�
 
 ### jekyll-sitemap
 sitemap是一个在网站指定路径下的文件，最简单的形式就是XML，用于通知爬虫软件或搜索引擎，该网站下有哪些可以抓取的网页，xml Sitemaps是一个标准的协议，只要遵循该协议，搜索引擎就会快速的建立该网站的索引。jekyll-sitemap插件的作用就是在生成_site文件夹的时候，在根路径下生成一个sitemap.xml
+
+### jekyll-feed
+博客是内容生成源，有的用户习惯于使用RSS来订阅内容，同jekyll-sitemap一样，其他的
 
 ## 一些小问题
 
